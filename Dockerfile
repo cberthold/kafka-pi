@@ -32,7 +32,7 @@ RUN \
 # clean up apt-get https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
   && rm -rf /var/lib/apt/lists/* \
 # make our install script executable
-  && chmod a+x install.sh \
+  && chmod a+x /tmp/install.sh \
 # run install script
   && /tmp/install.sh \
 # cleanup /tmp
