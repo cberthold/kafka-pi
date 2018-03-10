@@ -17,8 +17,19 @@ COPY install.sh /tmp
 #	Note: The reason for all of the continuations is to reduce
 #	      number of docker incrementals
 #
-# install unzip wget curl
-RUN apt-get install unzip wget curl \
+# run our commands
+RUN \
+# update an expired key ring
+  apt-key adv --recv-keys --keyserver keys.gnupg.net 92BF1079 \
+# update apt-get
+  && apt-get update \
+# install packages
+  && apt-get install -y \
+  	curl \
+  	unzip \
+  	wget \
+# clean up apt-get https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
+  && rm -rf /var/lib/apt/lists/*
 # make our install script executable
   && chmod a+x install.sh \
 # run install script
@@ -27,4 +38,4 @@ RUN apt-get install unzip wget curl \
   && rm -f /tmp/*
 
 # this will be replaced later after I debug Kafka install
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
