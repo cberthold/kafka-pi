@@ -4,7 +4,15 @@
 # KAFKA_VER = the version of Kafka we are going to download
 # SCALA_VER = the version of Scala it is built with
 # download it as kafka.tgz
-DOWNLOAD_URL="https://www.apache.org/dyn/closer.cgi?path=/kafka/${KAFKA_VER}/kafka_${SCALA_VER}-${KAFKA_VER}.tgz"
+
+# get the closest apache mirror got this from SO
+# https://stackoverflow.com/questions/21534797/finding-the-closest-apache-software-foundation-mirror-programatically
+# surrounding the command with $(cmd inside) gets the stdout and sticks it in the variable 
+CLOSEST_MIRROR_URL="$(curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' | jq --raw-output '.preferred')"
+# now we can download the specific files and version
+DOWNLOAD_URL="${CLOSEST_MIRROR_URL}kafka/${KAFKA_VER}/kafka_${SCALA_VER}-${KAFKA_VER}.tgz"
+# always bring back as a single file name to make the rest of the scripts easier to work with
 DOWNLOAD_FILE="kafka.tgz"
+# download the file quietly and out to our output filename
 wget -q "${DOWNLOAD_URL}" -O ${DOWNLOAD_FILE}
  
