@@ -30,7 +30,7 @@ RUN \
   	unzip \
   	wget \
 # clean up apt-get https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
 # make our install script executable
   && chmod a+x install.sh \
 # run install script
