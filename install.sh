@@ -6,5 +6,5 @@
 # download it as kafka.tgz
 DOWNLOAD_URL="https://www.apache.org/dyn/closer.cgi?path=/kafka/${KAFKA_VER}/kafka_${SCALA_VER}-${KAFKA_VER}.tgz"
 DOWNLOAD_FILE="kafka.tgz"
-wget -q "${DOWNLOAD_URL}" -f ${DOWNLOAD_FILE}
+wget -q "${DOWNLOAD_URL}" -O ${DOWNLOAD_FILE}
  
