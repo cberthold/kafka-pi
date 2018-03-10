@@ -5,6 +5,8 @@
 # SCALA_VER = the version of Scala it is built with
 # download it as kafka.tgz
 
+# Section: DOWNLOADS
+
 # get the closest apache mirror got this from SO
 # https://stackoverflow.com/questions/21534797/finding-the-closest-apache-software-foundation-mirror-programatically
 # surrounding the command with $(cmd inside) gets the stdout and sticks it in the variable 
@@ -16,3 +18,11 @@ DOWNLOAD_FILE="kafka.tgz"
 # download the file quietly and out to our output filename
 wget -q "${DOWNLOAD_URL}" -O ${DOWNLOAD_FILE}
  
+
+# Section: INSTALL
+# going a little off this article for install https://hevodata.com/blog/how-to-set-up-kafka-on-ubuntu-16-04/
+
+# untar the file to /opt 
+tar xvf /tmp/kafka.tgz -C /opt
+# rename to /opt/kafka because it will come out as /opt/kafka_{scala_ver}_{kafka_ver} ickkkkk
+mv /opt/kafka* /opt/kafka
