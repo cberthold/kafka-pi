@@ -1,1 +1,1 @@
-# kafka-pi
+# Kafka running on Raspberry Pi
