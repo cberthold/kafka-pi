@@ -26,3 +26,13 @@ wget -q "${DOWNLOAD_URL}" -O ${DOWNLOAD_FILE}
 tar xvf /tmp/kafka.tgz -C /opt
 # rename to /opt/kafka because it will come out as /opt/kafka_{scala_ver}_{kafka_ver} ickkkkk
 mv /opt/kafka* /opt/kafka
+
+# add kafka user
+adduser --system --no-create-home --disabled-password --disabled-login kafka
+
+# make our log data directory for kafka
+mkdir -p /var/lib/kafka/data
+
+# change ownership of the kafka directories to the kafka user
+chown -R kafka:nogroup /opt/kafka
+chown -R kafka:nogroup /var/lib/kafka
