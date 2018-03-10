@@ -26,6 +26,7 @@ RUN \
 # install packages
   && apt-get install -y \
   	curl \
+  	jq \ 
   	unzip \
   	wget \
 # clean up apt-get https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
