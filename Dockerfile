@@ -20,9 +20,9 @@ COPY install.sh create-config-template.sh create-config-files.sh server-start.sh
 # run our commands
 RUN \
 # update an expired key ring
-  apt-key adv --recv-keys --keyserver keys.gnupg.net 92BF1079 \
+#  apt-key adv --recv-keys --keyserver keys.gnupg.net 92BF1079
 # update apt-get
-  && apt-get update \
+  apt-get update \
 # install packages
   && apt-get install -y \
   	curl \
@@ -34,9 +34,9 @@ RUN \
 # make our install script executable
   && chmod a+x /tmp/install.sh \
 # run install script
-  && /tmp/install.sh \
+  && /tmp/install.sh
 # cleanup /tmp
-  && rm -f /tmp/*
+#  && rm /tmp/*
 
 # expose client port for ZooKeeper
 EXPOSE 2181
