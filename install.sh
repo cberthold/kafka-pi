@@ -42,6 +42,7 @@ chown -R kafka:nogroup /var/lib/kafka
 chown -R kafka:nogroup /var/lib/zookeeper
 
 # convert our properties files to a template
+/tmp/create-config-template.sh /opt/kafka/config
 
 # remove the server properties files for ZooKeeper and Kafka
 rm /opt/kafka/config/server.properties
