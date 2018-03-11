@@ -1,5 +1,5 @@
 # start with open jdk image
-FROM hypriot/rpi-java
+FROM arm32v7/openjdk
 
 # set the versions of kafka and scala we want to install
 ARG kafka_ver=1.0.1
