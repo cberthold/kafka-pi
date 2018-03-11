@@ -4,4 +4,8 @@ CONFIG_PATH="${SCRIPT_PATH}/../config"
 ZOOKEEPER_CONFIG="${CONFIG_PATH}/zookeeper.properties"
 ZOOKEEPER_TEMPLATE="${ZOOKEEPER_CONFIG}.templates"
 
-cp "${ZOOKEEPER_CONFIG}" "${ZOOKEEPER_TEMPLATE}"
+cat "${ZOOKEEPER_CONFIG}" \
+  | sed -r "s/^(dataDir=)(.*)/\1{{ZOOKEEPER_DATA_DIR}}/g" \
+  | sed -r "s/^(clientPort=)(.*)/\1{{ZOOKEEPER_CLIENT_PORT}}/g" \
+  | sed -r "s/^(maxClientCnxns=)(.*)/\1{{ZOOKEEPER_MAX_CLIENT_CONNECTIONS}}/g" \
+  > "${ZOOKEEPER_TEMPLATE}"
