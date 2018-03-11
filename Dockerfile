@@ -10,11 +10,7 @@ ENV KAFKA_VER=$kafka_ver \
     SCALA_VER=$scala_ver
     
 # seems like /tmp is where everyone likes to copy stuff too and then wipe out
-COPY 
-  install.sh \
-  create-config-template.sh \
-  server-start.sh \
-  /tmp
+COPY install.sh create-config-template.sh create-config-files.sh server-start.sh /tmp/
 
 #
 # BOOTSTRAP: This is where we bootstrap the install and setup
