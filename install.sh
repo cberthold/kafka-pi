@@ -14,7 +14,7 @@ CLOSEST_MIRROR_URL="$(curl -s 'https://www.apache.org/dyn/closer.cgi?as_json=1' 
 # now we can download the specific files and version
 DOWNLOAD_URL="${CLOSEST_MIRROR_URL}kafka/${KAFKA_VER}/kafka_${SCALA_VER}-${KAFKA_VER}.tgz"
 # always bring back as a single file name to make the rest of the scripts easier to work with
-DOWNLOAD_FILE="kafka.tgz"
+DOWNLOAD_FILE="/tmp/kafka.tgz"
 # download the file quietly and out to our output filename
 wget -q "${DOWNLOAD_URL}" -O ${DOWNLOAD_FILE}
  
