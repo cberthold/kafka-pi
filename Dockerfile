@@ -10,7 +10,11 @@ ENV KAFKA_VER=$kafka_ver \
     SCALA_VER=$scala_ver
     
 # seems like /tmp is where everyone likes to copy stuff too and then wipe out
-COPY install.sh /tmp
+COPY 
+  install.sh \
+  create-config-template.sh \
+  server-start.sh \
+  /tmp
 
 #
 # BOOTSTRAP: This is where we bootstrap the install and setup
@@ -37,6 +41,23 @@ RUN \
   && /tmp/install.sh \
 # cleanup /tmp
   && rm -f /tmp/*
+
+# expose client port for ZooKeeper
+EXPOSE 2181
+# expose the peer and election ports for ZooKeeper
+EXPOSE 2888
+EXPOSE 3888
+
+# expose listener ports for Kafka
+# Plaintext - this is the only one supported thus far but might as well document it for later
+EXPOSE 9091
+# SSL
+#EXPOSE 9092
+# SASL SSL
+#EXPOSE 9093
+
+# expose data volumes
+VOLUME ["/var/lib/kafka/data","/var/lib/zookeeper/data"]
 
 # this will be replaced later after I debug Kafka install
 CMD ["/bin/bash"]
