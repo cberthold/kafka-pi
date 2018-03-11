@@ -33,6 +33,16 @@ adduser --system --no-create-home --disabled-password --disabled-login kafka
 # make our log data directory for kafka
 mkdir -p /var/lib/kafka/data
 
+# make our data directory for zookeeper
+mkdir -p /var/lib/zookeeper/data
+
 # change ownership of the kafka directories to the kafka user
 chown -R kafka:nogroup /opt/kafka
 chown -R kafka:nogroup /var/lib/kafka
+chown -R kafka:nogroup /var/lib/zookeeper
+
+# convert our properties files to a template
+
+# remove the server properties files for ZooKeeper and Kafka
+rm /opt/kafka/config/server.properties
+rm /opt/kafka/config/zookeeper.properties
