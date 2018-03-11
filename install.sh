@@ -36,6 +36,10 @@ mkdir -p /var/lib/kafka/data
 # make our data directory for zookeeper
 mkdir -p /var/lib/zookeeper/data
 
+# copy the template config generator script and make it executable
+cp /tmp/create-config-files.sh /opt/kafka/bin
+chmod a+x /opt/kafka/bin/create-config-files.sh 
+
 # change ownership of the kafka directories to the kafka user
 chown -R kafka:nogroup /opt/kafka
 chown -R kafka:nogroup /var/lib/kafka

@@ -6,7 +6,7 @@ if [ ! -z "$1" ]
 then
   CONFIG_PATH="$(dirname $1/testfilename)"
 fi
-echo "${CONFIG_PATH}"
+echo "Building ZooKeeper and Kafka templates in: ${CONFIG_PATH}"
 
 KAFKA_CONFIG="${CONFIG_PATH}/server.properties"
 KAFKA_TEMPLATE="${KAFKA_CONFIG}.templates"
