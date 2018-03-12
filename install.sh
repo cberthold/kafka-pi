@@ -40,6 +40,11 @@ mkdir -p /var/lib/zookeeper/data
 cp /tmp/create-config-files.sh /opt/kafka/bin
 chmod a+x /opt/kafka/bin/create-config-files.sh 
 
+# copy server start file
+cp /tmp/server-start.sh /opt/kafka/bin
+# make server start executable
+chmod a+x /opt/kafka/bin/server-start.sh
+
 # change ownership of the kafka directories to the kafka user
 chown -R kafka:nogroup /opt/kafka
 chown -R kafka:nogroup /var/lib/kafka

@@ -34,9 +34,10 @@ RUN \
 # make our install script executable
   && chmod a+x /tmp/install.sh \
 # run install script
-  && /tmp/install.sh
+  && /tmp/install.sh \
 # cleanup /tmp
-#  && rm /tmp/*
+  && rm /tmp/*.sh \
+  && rm /tmp/kafka.tgz
 
 # expose client port for ZooKeeper
 EXPOSE 2181
@@ -48,7 +49,7 @@ EXPOSE 3888
 # Plaintext - this is the only one supported thus far but might as well document it for later
 EXPOSE 9091
 # SSL
-#EXPOSE 9092
+EXPOSE 9092
 # SASL SSL
 #EXPOSE 9093
 
@@ -56,4 +57,4 @@ EXPOSE 9091
 VOLUME ["/var/lib/kafka/data","/var/lib/zookeeper/data"]
 
 # this will be replaced later after I debug Kafka install
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-c", "/opt/kafka/bin/server-start.sh"]

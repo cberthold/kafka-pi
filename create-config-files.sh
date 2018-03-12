@@ -19,6 +19,7 @@ DEFAULT_ZOOKEEPER_CLIENT_PORT="2181"
 DEFAULT_ZOOKEEPER_MAX_CLIENT_CONNECTIONS="0"
 
 # reasonable defaults - Kafka
+DEFAULT_KAFKA_DATA_DIR="/var/lib/kafka/data"
 
 # build the ZooKeeper config files from the template
 cat "${ZOOKEEPER_TEMPLATE}" \
@@ -29,6 +30,7 @@ cat "${ZOOKEEPER_TEMPLATE}" \
 
 # build the Kafka template  
 cat "${KAFKA_TEMPLATE}" \
+  | sed -e "s|{{KAFKA_DATA_DIR}}|${ZOOKEEPER_DATA_DIR:-$DEFAULT_KAFKA_DATA_DIR}|g" \
   > "${KAFKA_CONFIG}"
 
 

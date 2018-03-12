@@ -22,5 +22,5 @@ cat "${ZOOKEEPER_CONFIG}" \
 
 # build the Kafka template  
 cat "${KAFKA_CONFIG}" \
+  | sed -r "s/^(log.dirs=)(.*)/\1{{KAFKA_DATA_DIR}}/g" \
   > "${KAFKA_TEMPLATE}"
-  
