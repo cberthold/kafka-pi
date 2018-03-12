@@ -7,7 +7,8 @@ ARG scala_ver=2.12
 
 # setup the environment vars that we'll be passing around to our install
 ENV KAFKA_VER=$kafka_ver \
-    SCALA_VER=$scala_ver
+    SCALA_VER=$scala_ver \
+    KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
     
 # seems like /tmp is where everyone likes to copy stuff too and then wipe out
 COPY install.sh create-config-template.sh create-config-files.sh server-start.sh /tmp/
