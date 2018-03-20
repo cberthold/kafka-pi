@@ -19,26 +19,26 @@ COPY install.sh create-config-template.sh create-config-files.sh server-start.sh
 #	      number of docker incrementals
 #
 # run our commands
-RUN \
+# RUN \
 # update an expired key ring
 #  apt-key adv --recv-keys --keyserver keys.gnupg.net 92BF1079
 # update apt-get
-  apt-get update \
+RUN  apt-get update 
 # install packages
-  && apt-get install -y \
+RUN  apt-get install -y \
   	curl \
   	jq \ 
   	unzip \
-  	wget \
+  	wget
 # clean up apt-get https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#run
-  && rm -rf /var/lib/apt/lists/* \
+RUN  rm -rf /var/lib/apt/lists/*
 # make our install script executable
-  && chmod a+x /tmp/install.sh \
+RUN  chmod a+x /tmp/install.sh
 # run install script
-  && /tmp/install.sh \
+RUN /tmp/install.sh
 # cleanup /tmp
-  && rm /tmp/*.sh \
-  && rm /tmp/kafka.tgz
+RUN rm /tmp/*.sh 
+RUN rm /tmp/kafka.tgz
 
 # expose client port for ZooKeeper
 EXPOSE 2181
