@@ -6,7 +6,8 @@ ARG kafka_ver=1.0.1
 ARG scala_ver=2.12
 
 # setup the environment vars that we'll be passing around to our install
-ENV KAFKA_VER=$kafka_ver \
+ENV ARCH=arm \
+    KAFKA_VER=$kafka_ver \
     SCALA_VER=$scala_ver \
     KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
     
